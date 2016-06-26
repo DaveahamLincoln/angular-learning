@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app='myApp'>
     <head>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/app.css">
@@ -18,78 +18,103 @@
 -->
 
     </head>
+    
     <body style="padding: 50px">
         
         <!--<div ng-init="albumNames = ['Madrid', 'Iceland', 'Thailand', 'Australia']">-->
-        
+
+<!--        
         <div ng-init="albums = [
         {name: 'Madrid', title: 'Weekend in Madrid', date: '2013-09-01', description: 'Yay Madrid'},
         {name: 'Iceland', title: 'Weekend in Iceland', date: '2014-09-02', description: 'Yay Iceland'},
         {name: 'Thailand', title: 'Weekend in Thailand', date: '2015-09-03', description: 'Yay Thailand'},
         {name: 'Australia', title: 'Weekend in Australia', date: '2016-09-01', description: 'Yay Australia'}
         ]">
-        
-        <p>
-            <!--Search for--> <input type='text' placeholder="Type to search..." ng-model='searchFor' size='30'>  <!--{{searchFor}}-->
-        </p>
-        
-        <p>
-            There are {{albums.length}} albums to view.
-        </p>
+-->
+
+        <div ng-controller="AlbumListController">
+
+            <p>
+                <!--Search for--> <input type='text' placeholder="Type to search..." ng-model='searchFor' size='30'>  <!--{{searchFor}}-->
+            </p>
+            
+            <p>
+                There are {{albums.length}} albums to view.
+            </p>
 
 <!--
-        <ul>
-            <li ng-repeat= "album in albums | filter:'thailand'">
-            <li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'">
-            <li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'" ng-class="{even: $even, odd: $odd}">
-            <li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'" ng-class-even="'even'" ng-class-odd="'odd'">
-                {{$index + 1}} - {{album.title | uppercase}} ({{album.date}})
-            </li>
-        </ul>
+            <ul>
+                <li ng-repeat= "album in albums | filter:'thailand'">
+                <li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'">
+                <li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'" ng-class="{even: $even, odd: $odd}">
+                <li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'" ng-class-even="'even'" ng-class-odd="'odd'">
+                    {{$index + 1}} - {{album.title | uppercase}} ({{album.date}})
+                </li>
+            </ul>
 -->    
 
 <!--
-        <div class="panel panel-primary" ng-repeat= "album in albums | filter:searchFor | orderBy:'date'"
-            style="
-            float:left; 
-            width:300px;
-            margin-right:10px;
-            min-height: 200px;
-            "
-        >
+            <div class="panel panel-primary" ng-repeat= "album in albums | filter:searchFor | orderBy:'date'"
+                style="
+                float:left; 
+                width:300px;
+                margin-right:10px;
+                min-height: 200px;
+                "
+            >
 -->        
-        <!--<div class="album panel panel-primary" ng-repeat= "album in albums | filter:searchFor | orderBy:'date'">-->
-        <div class="album panel panel-primary" ng-repeat= "album in albums | filter:{title: searchFor} | orderBy:'date'">
-            <div class="panel-heading">
-                <div style="float:right">({{album.date}})</div>
-                {{album.title | uppercase}} 
+            <!--<div class="album panel panel-primary" ng-repeat= "album in albums | filter:searchFor | orderBy:'date'">-->
+            <div class="album panel panel-primary" ng-repeat= "album in albums | filter:{title: searchFor} | orderBy:'date'">
+                <div class="panel-heading">
+                    <div style="float:right">({{album.date}})</div>
+                    {{album.title | uppercase}} 
+                </div>
+                
+                <!--<div style="padding:5px">-->
+                <div class="description">
+                    {{album.description}}
+                </div>
+                
             </div>
-            
-            <!--<div style="padding:5px">-->
-            <div class="description">
-                {{album.description}}
-            </div>
-            
-        </div>
         
 <!--            
-        <hr/>
+            <hr/>
     
-        <p>
-            There are {{albums.length}} album objects to enumerate.
-        </p>
-        
-        <ul>
-            <li ng-repeat='album in albums'>
-                <ul>
-                    <li ng-repeat="(key, value) in album">
-                        <strong>{{ key}}</strong> = {{value}}
-                    </li>
-                    <br/>
-                </ul>
-            </li>
-        </ul>
+            <p>
+                There are {{albums.length}} album objects to enumerate.
+            </p>
+            
+            <ul>
+                <li ng-repeat='album in albums'>
+                    <ul>
+                        <li ng-repeat="(key, value) in album">
+                            <strong>{{ key}}</strong> = {{value}}
+                        </li>
+                        <br/>
+                    </ul>
+                </li>
+            </ul>
 -->        
+
+<script type="text/javascript">
+
+//This is hacky, and I don't quite understand it.  I think it registers the app as a module and then adds 
+//  the controller to it, but I'm not sure.  Found this in the Youtube comments, because the original version
+//  based on the tutorial doesn't work without it for some reason.  Might be a depricated thing from a past version
+//  of angular.
+    var myApp = angular.module('myApp', [])  .controller('AlbumListController', AlbumListController);
+//
+    
+    function AlbumListController ($scope) {
+        $scope.albums = [
+        {name: 'Madrid', title: 'Weekend in Madrid', date: '2013-09-01', description: 'Yay Madrid'},
+        {name: 'Iceland', title: 'Weekend in Iceland', date: '2014-09-02', description: 'Yay Iceland'},
+        {name: 'Thailand', title: 'Weekend in Thailand', date: '2015-09-03', description: 'Yay Thailand'},
+        {name: 'Australia', title: 'Weekend in Australia', date: '2016-09-01', description: 'Yay Australia'}
+        ];
+    }
+</script>
+
         </div>
     </body>
 </html>
