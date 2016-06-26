@@ -2,8 +2,10 @@
 <html ng-app>
     <head>
         <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/app.css">
         <script type="text/javascript" src="angular.min.js"></script>
         <script type="text/javascript" src="bootstrap.min.js"></script>
+<!--        
         <style type="text/css">
             .even{
                 color:red;
@@ -13,9 +15,13 @@
                 color:blue;
             }
         </style>
+-->
+
     </head>
     <body style="padding: 50px">
+        
         <!--<div ng-init="albumNames = ['Madrid', 'Iceland', 'Thailand', 'Australia']">-->
+        
         <div ng-init="albums = [
         {name: 'Madrid', title: 'Weekend in Madrid', date: '2013-09-01', description: 'Yay Madrid'},
         {name: 'Iceland', title: 'Weekend in Iceland', date: '2014-09-02', description: 'Yay Iceland'},
@@ -24,21 +30,47 @@
         ]">
         
         <p>
-            Search for <input type='text' ng-model='searchFor' size='30'>  <!--{{searchFor}}-->
+            <!--Search for--> <input type='text' placeholder="Type to search..." ng-model='searchFor' size='30'>  <!--{{searchFor}}-->
         </p>
         
         <p>
             There are {{albums.length}} albums to view.
         </p>
-        
+
+<!--
         <ul>
-            <!--<li ng-repeat= "album in albums | filter:'thailand'">-->
-            <!--<li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'">-->
-            <!--<li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'" ng-class="{even: $even, odd: $odd}">-->
+            <li ng-repeat= "album in albums | filter:'thailand'">
+            <li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'">
+            <li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'" ng-class="{even: $even, odd: $odd}">
             <li ng-repeat= "album in albums | filter:searchFor | orderBy:'date'" ng-class-even="'even'" ng-class-odd="'odd'">
                 {{$index + 1}} - {{album.title | uppercase}} ({{album.date}})
             </li>
         </ul>
+-->    
+
+<!--
+        <div class="panel panel-primary" ng-repeat= "album in albums | filter:searchFor | orderBy:'date'"
+            style="
+            float:left; 
+            width:300px;
+            margin-right:10px;
+            min-height: 200px;
+            "
+        >
+-->        
+        <!--<div class="album panel panel-primary" ng-repeat= "album in albums | filter:searchFor | orderBy:'date'">-->
+        <div class="album panel panel-primary" ng-repeat= "album in albums | filter:{title: searchFor} | orderBy:'date'">
+            <div class="panel-heading">
+                <div style="float:right">({{album.date}})</div>
+                {{album.title | uppercase}} 
+            </div>
+            
+            <!--<div style="padding:5px">-->
+            <div class="description">
+                {{album.description}}
+            </div>
+            
+        </div>
         
 <!--            
         <hr/>
