@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app>
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script type="text/javascript" src="angular.min.js"></script>
+        <script type="text/javascript" src="bootstrap.min.js"></script>
+    </head>
+    <body style="padding: 50px">
+        <!--<div ng-init="albumNames = ['Madrid', 'Iceland', 'Thailand', 'Australia']">-->
+        <div ng-init="albums = [
+        {name: 'Madrid', title: 'Weekend in Madrid', date: '2013-09-01', description: 'Yay Madrid'},
+        {name: 'Iceland', title: 'Weekend in Iceland', date: '2014-09-02', description: 'Yay Iceland'},
+        {name: 'Thailand', title: 'Weekend in Thailand', date: '2015-09-03', description: 'Yay Thailand'},
+        {name: 'Australia', title: 'Weekend in Australia', date: '2016-09-01', description: 'Yay Australia'}
+        ]">
+        
+        <p>
+            There are {{albums.length}} albums to view.
+        </p>
+        
+        <ul>
+            <li ng-repeat= "album in albums">
+                {{album.title}} ({{album.date}})
+            </li>
+        </ul>
+        
+<!--            
+        <hr/>
+    
+        <p>
+            There are {{albums.length}} album objects to enumerate.
+        </p>
+        
+        <ul>
+            <li ng-repeat='album in albums'>
+                <ul>
+                    <li ng-repeat="(key, value) in album">
+                        <strong>{{ key}}</strong> = {{value}}
+                    </li>
+                    <br/>
+                </ul>
+            </li>
+        </ul>
+-->        
+        </div>
+    </body>
+</html>
