@@ -19,8 +19,8 @@
         </p>
         
         <ul>
-            <li ng-repeat= "album in albums">
-                {{album.title}} ({{album.date}})
+            <li ng-repeat= "album in albums | filter:'thailand'">
+                {{album.title | uppercase}} ({{album.date}})
             </li>
         </ul>
         
