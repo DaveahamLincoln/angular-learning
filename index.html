@@ -134,8 +134,8 @@
 //  of angular.
     var myApp = angular.module('myApp', [])  .controller('AlbumListController', AlbumListController);
 //
-    var $scope.adding_album={};
     function AlbumListController ($scope) {
+        var $scope.adding_album = {};
         $scope.albums = [
         {name: 'Madrid', title: 'Weekend in Madrid', date: '2013-09-01', description: 'Yay Madrid'},
         {name: 'Iceland', title: 'Weekend in Iceland', date: '2014-09-02', description: 'Yay Iceland'},
