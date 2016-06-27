@@ -15,11 +15,6 @@ div.album div.description{
     padding:5px;
 }
 
-div.album div.left_button{
-    margin-left: 5px;
-    padding:5px;
-}
-
 input[type=text]{
     padding:3px;
     border-radius:4px;

@@ -19,7 +19,7 @@
 
     </head>
     
-    <body style="padding: 50px">
+    <body>
         
         <!--<div ng-init="albumNames = ['Madrid', 'Iceland', 'Thailand', 'Australia']">-->
 
@@ -32,7 +32,10 @@
         ]">
 -->
 
-        <div ng-controller="AlbumListController">
+        <div ng-include="'./user_partial.html'">
+        </div>
+
+        <div ng-controller="AlbumListController" style="padding: 50px">
 
             <p>
                 <!--Search for--> <input type='text' placeholder="Type to search..." ng-model='searchFor' size='30'>  <!--{{searchFor}}-->
@@ -135,7 +138,9 @@
 //  the controller to it, but I'm not sure.  Found this in the Youtube comments, because the original version
 //  based on the tutorial doesn't work without it for some reason.  Might be a depricated thing from a past version
 //  of angular.
-    var myApp = angular.module('myApp', [])  .controller('AlbumListController', AlbumListController);
+    var myApp = angular.module('myApp', [])  
+        .controller('AlbumListController', AlbumListController) 
+        .controller('UserController',UserController);
 //
     function AlbumListController ($scope) {
         $scope.adding_album = {};
@@ -152,8 +157,8 @@
             
             if (!new_album.title)
                 $scope.add_album_error = "Missing title";
-            else if (!new_album.date || !is_valid_date(new_album.date))
-                $scope.add_album_error = "Date not correct"
+            else if (!new_album.date)
+                $scope.add_album_error = "Missing date"
             else if (!new_album.description)
                 $scope.add_album_error = "Missing description"
             else if (!new_album.name)
@@ -174,6 +179,10 @@
     //        return true;
     //    return false;
     //}
+    
+    function UserController ($scope) {
+        $scope.user = {username: "Dave", fullname: "Dave N"};
+    }
     
 </script>
 
